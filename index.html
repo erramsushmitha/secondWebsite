@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101426">
+    <title>SkillUp | Learning Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="app">
+
+    <aside class="sidebar" id="sidebar">
+        <div class="brand">
+            <div class="brand-icon">S</div>
+            <span>Skill<span class="accent">Up.</span></span>
+        </div>
+
+        <div class="menu-label">MENU</div>
+        <nav>
+            <a href="#dashboard" class="nav-link active">▦ Dashboard</a>
+            <a href="#modules" class="nav-link">▣ Learning Modules</a>
+            <a href="#quiz" class="nav-link">✎ Practice Quiz</a>
+            <a href="#analytics" class="nav-link">◷ Analytics</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="help-card">
+                <div class="help-icon">✦</div>
+                <h3>Keep Learning!</h3>
+                <p>Small steps every day lead to big achievements.</p>
+            </div>
+            <button class="theme-btn" id="themeToggle">☾ Change Theme</button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <div>
+                <p class="welcome">INTERNSHIP LEARNING PORTAL</p>
+                <h2>Learning Dashboard</h2>
+            </div>
+            <div class="profile">
+                <div class="avatar">S</div>
+                <div>
+                    <strong>Student</strong>
+                    <small>Internship Trainee</small>
+                </div>
+            </div>
+        </header>
+
+        <section id="dashboard" class="hero">
+            <div class="hero-content">
+                <span class="hero-tag">✦ YOUR LEARNING JOURNEY</span>
+                <h1>Build Skills.<br><span>Shape Your Future.</span></h1>
+                <p>Master essential concepts, practice real-world skills and develop professional expertise.</p>
+                <a href="#modules" class="primary-btn">Explore Modules →</a>
+            </div>
+            <div class="hero-decoration">
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+                <div class="hero-symbol">✦</div>
+            </div>
+        </section>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon purple">▣</div>
+                <p>Total Modules</p>
+                <h2>14</h2>
+                <small>Learning objectives</small>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon green">✓</div>
+                <p>Completed</p>
+                <h2 id="completedCount">0</h2>
+                <small>Modules finished</small>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon orange">◷</div>
+                <p>Remaining</p>
+                <h2 id="remainingCount">14</h2>
+                <small>Modules to complete</small>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon blue">★</div>
+                <p>Overall Progress</p>
+                <h2 id="progressNumber">0%</h2>
+                <small>Course completion</small>
+            </div>
+        </section>
+
+        <section class="content-section" id="modules">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">YOUR CURRICULUM</span>
+                    <h2>Core Learning Modules</h2>
+                    <p>Explore each objective and mark it complete as you learn.</p>
+                </div>
+                <span class="module-counter" id="moduleCounter">0 / 14 Done</span>
+            </div>
+
+            <div class="progress-panel">
+                <div class="progress-info">
+                    <strong>Your Learning Progress</strong>
+                    <span id="progressLabel">0% completed</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="filter-row">
+                <input type="search" id="searchInput" placeholder="⌕ Search learning modules...">
+                <select id="filterSelect">
+                    <option value="all">All Modules</option>
+                    <option value="completed">Completed</option>
+                    <option value="pending">Not Completed</option>
+                </select>
+            </div>
+
+            <div class="module-grid" id="moduleGrid"></div>
+            <p class="empty-message" id="emptyMessage" hidden>No modules found. Try another search.</p>
+        </section>
+
+        <section class="content-section quiz-section" id="quiz">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">TEST YOUR KNOWLEDGE</span>
+                    <h2>Knowledge Challenge</h2>
+                    <p>Answer these questions to test your understanding.</p>
+                </div>
+            </div>
+
+            <div class="quiz-card">
+                <div class="quiz-top">
+                    <span id="questionNumber">QUESTION 1 OF 5</span>
+                    <span id="quizScore">Score: 0</span>
+                </div>
+                <div class="quiz-progress">
+                    <div id="quizProgress"></div>
+                </div>
+                <h3 id="questionText">Loading question...</h3>
+                <div id="optionsContainer" class="options"></div>
+                <p id="feedback" class="feedback" aria-live="polite"></p>
+                <div class="quiz-actions">
+                    <button id="nextButton" class="primary-btn" disabled>Next Question →</button>
+                    <button id="restartButton" class="secondary-btn" hidden>Try Again ↻</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section analytics-section" id="analytics">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">YOUR PERFORMANCE</span>
+                    <h2>Learning Analytics</h2>
+                    <p>Track your completed and pending objectives.</p>
+                </div>
+            </div>
+            <div class="analytics-card">
+                <canvas id="progressChart"></canvas>
+            </div>
+        </section>
+
+        <footer>
+            <div class="brand footer-brand">
+                <div class="brand-icon">S</div>
+                <span>Skill<span class="accent">Up.</span></span>
+            </div>
+            <p>Designed for continuous learning and professional growth.</p>
+            <small>© 2026 SkillUp Learning Platform</small>
+        </footer>
+
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
